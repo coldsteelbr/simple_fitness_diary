@@ -1,6 +1,5 @@
 package ru.romanbrazhnikov.simplefitnessdiary.base.views;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,11 +15,30 @@ import ru.romanbrazhnikov.simplefitnessdiary.base.views.viewholders.BaseViewHold
 
 /**
  * Created by roman on 07.10.17.
+ * Basic list view Activity implementing boilerplate for the ViewHolder pattern
+ * based on RecyclerView.
+ * <p>
+ * Extend this class and override abstract methods to make your activity work.
+ * Generics:
+ * T - type of the item model, that is used in Adapter
+ * V - successor of BaseViewHolder, that binds model and layout of an item
+ * <p>
+ * Methods:
+ * int getRecyclerViewID()
+ * - returns id of the RecyclerView widget used in the screen layout
+ * <p>
+ * int getItemLayoutID()
+ * - returns id of an item layout used within recycler view list
+ * <p>
+ * V newViewHolder(View itemView)
+ * - generates and returns NEW successor of the BaseViewHolder
+ * <p>
+ * int getScreenLayout()
+ * - returns the screen layout ID to be set
  */
 
 public abstract class BaseRecyclerViewActivity<T, V extends BaseViewHolder> extends BaseActivity {
 
-    private Context mContext;
     private RecyclerView rvTrainingList;
     private int mRecyclerViewID;
     private int mItemLayout;
@@ -41,7 +59,6 @@ public abstract class BaseRecyclerViewActivity<T, V extends BaseViewHolder> exte
         rvTrainingList.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    protected abstract int getScreenLayout();
 
     protected BaseAdapter getAdapter() {
         return mBaseAdapter;
@@ -55,6 +72,14 @@ public abstract class BaseRecyclerViewActivity<T, V extends BaseViewHolder> exte
     protected void updateAdapter(List<T> items) {
         mBaseAdapter.updateData(items);
         mBaseAdapter.notifyDataSetChanged();
+    }
+
+    protected void refreshList(List<T> items){
+        if (mBaseAdapter == null) {
+            resetAdapter(items);
+        } else {
+            updateAdapter(items);
+        }
     }
 
     /**
@@ -73,6 +98,10 @@ public abstract class BaseRecyclerViewActivity<T, V extends BaseViewHolder> exte
      */
     protected abstract V newViewHolder(View itemView);
 
+    /**
+     * Returns layout id for the screen
+     */
+    protected abstract int getScreenLayout();
 
     class BaseAdapter extends RecyclerView.Adapter<V> {
 

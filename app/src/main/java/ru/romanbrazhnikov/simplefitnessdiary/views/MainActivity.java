@@ -50,20 +50,14 @@ public class MainActivity extends BaseRecyclerViewActivity<TrainingSet, Training
     }
 
     private void updateUI() {
-
-        // LIST
-        // getting items and setting adapter
+        // getting items and refreshing list
         Query<TrainingSet> queryAll
                 = mTrainingSetBox.query()
                 .build();
 
         List<TrainingSet> filteredRecords = queryAll.find();
-        if (getAdapter() == null) {
-            resetAdapter(filteredRecords);
-        } else {
-            updateAdapter(filteredRecords);
-        }
 
+        refreshList(filteredRecords);
     }
 
     @Override

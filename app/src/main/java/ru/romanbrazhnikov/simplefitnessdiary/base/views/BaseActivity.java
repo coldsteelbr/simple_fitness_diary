@@ -9,6 +9,7 @@ import ru.romanbrazhnikov.simplefitnessdiary.dagger.MyApp;
 
 /**
  * Created by roman on 07.10.17.
+ * Basic Activity. Includes dagger injection mechanism
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
