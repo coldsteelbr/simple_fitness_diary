@@ -72,7 +72,7 @@ public class MainActivity extends BaseRecyclerViewActivity<TrainingSet, Training
 
     @Override
     protected TrainingSetViewHolder newViewHolder(View itemView) {
-        return new TrainingSetViewHolder(itemView);
+        return new TrainingSetViewHolder(itemView, this);
     }
 
 

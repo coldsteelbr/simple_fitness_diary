@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import ru.romanbrazhnikov.simplefitnessdiary.views.MainActivity;
+import ru.romanbrazhnikov.simplefitnessdiary.views.TrainingSetEditorActivity;
 
 /**
  * Created by roman on 07.10.17.
@@ -18,6 +19,7 @@ import ru.romanbrazhnikov.simplefitnessdiary.views.MainActivity;
         })
 public interface AppComponent {
     void inject(MainActivity activity);
+    void inject(TrainingSetEditorActivity activity);
 
 }
 
