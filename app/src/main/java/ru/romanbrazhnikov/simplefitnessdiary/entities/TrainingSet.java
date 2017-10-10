@@ -13,6 +13,7 @@ import io.objectbox.annotation.Id;
 public class TrainingSet {
     @Id
     long id;
+    long sessionId;
     Date date;
     String exerciseType;
     String measurement;
@@ -23,6 +24,14 @@ public class TrainingSet {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(long sessionId) {
+        this.sessionId = sessionId;
     }
 
     public Date getDate() {

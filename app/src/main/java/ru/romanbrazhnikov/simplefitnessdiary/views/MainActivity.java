@@ -3,6 +3,7 @@ package ru.romanbrazhnikov.simplefitnessdiary.views;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.objectbox.Box;
 import io.objectbox.query.Query;
 import ru.romanbrazhnikov.simplefitnessdiary.R;
@@ -26,6 +28,9 @@ public class MainActivity extends BaseRecyclerViewActivity<TrainingSet, Training
     @BindView(R.id.fab_addTrainingSet)
     FloatingActionButton fab_addTrainingSet;
 
+    @BindView(R.id.b_testSession)
+    Button bTestSession;
+
     // LISTENERS
     AddClickListener mAddClickListener = new AddClickListener();
 
@@ -35,19 +40,30 @@ public class MainActivity extends BaseRecyclerViewActivity<TrainingSet, Training
         //setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
-        fab_addTrainingSet.setOnClickListener(mAddClickListener);
+        initListeners();
 
         TrainingSet testSet = new TrainingSet();
         testSet.setDate(new Date());
         testSet.setExerciseType("Pull-ups");
-        testSet.setMeasurement("15 times");
+        testSet.setMeasurement("15 times 1");
+        testSet.setSessionId(1);
         mTrainingSetBox.put(testSet);
 
         TrainingSet testSet2 = new TrainingSet();
         testSet2.setDate(new Date());
         testSet2.setExerciseType("Push-ups");
-        testSet2.setMeasurement("30 times");
+        testSet2.setMeasurement("30 times 2");
+        testSet2.setSessionId(2);
         mTrainingSetBox.put(testSet2);
+    }
+
+    @OnClick(R.id.b_testSession)
+    void testSession() {
+        TrainingSessionActivity.showNewActivity(this, 1L);
+    }
+
+    private void initListeners() {
+        fab_addTrainingSet.setOnClickListener(mAddClickListener);
     }
 
     @Override
@@ -86,7 +102,6 @@ public class MainActivity extends BaseRecyclerViewActivity<TrainingSet, Training
     protected TrainingSetViewHolder newViewHolder(View itemView) {
         return new TrainingSetViewHolder(itemView, this);
     }
-
 
     @Override
     public void inject() {

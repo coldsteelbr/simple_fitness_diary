@@ -9,6 +9,12 @@
     android:padding="16dp"
     tools:context="ru.romanbrazhnikov.simplefitnessdiary.views.MainActivity">
 
+    <Button
+        android:id="@+id/b_testSession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="testSession"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

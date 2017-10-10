@@ -7,6 +7,7 @@ import dagger.Provides;
 import io.objectbox.Box;
 import io.objectbox.BoxStore;
 import ru.romanbrazhnikov.simplefitnessdiary.entities.MyObjectBox;
+import ru.romanbrazhnikov.simplefitnessdiary.entities.TrainingSession;
 import ru.romanbrazhnikov.simplefitnessdiary.entities.TrainingSet;
 
 /**
@@ -28,7 +29,12 @@ public class ObjectBoxModule {
     }
 
     @Provides
-    Box<TrainingSet> provideBoxForTrainingSet(){
+    Box<TrainingSet> provideBoxForTrainingSet() {
         return mStore.boxFor(TrainingSet.class);
+    }
+
+    @Provides
+    Box<TrainingSession> provideBoxForTrainingTrainingSession() {
+        return mStore.boxFor(TrainingSession.class);
     }
 }

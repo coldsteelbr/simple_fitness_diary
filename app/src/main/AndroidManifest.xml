@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.TrainingSetEditorActivity"/>
+        <activity android:name=".views.TrainingSessionActivity"/>
     </application>
 
 </manifest>

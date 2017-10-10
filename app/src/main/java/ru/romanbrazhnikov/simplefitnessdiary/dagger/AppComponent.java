@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import ru.romanbrazhnikov.simplefitnessdiary.views.MainActivity;
+import ru.romanbrazhnikov.simplefitnessdiary.views.TrainingSessionActivity;
 import ru.romanbrazhnikov.simplefitnessdiary.views.TrainingSetEditorActivity;
 
 /**
@@ -20,6 +21,7 @@ import ru.romanbrazhnikov.simplefitnessdiary.views.TrainingSetEditorActivity;
 public interface AppComponent {
     void inject(MainActivity activity);
     void inject(TrainingSetEditorActivity activity);
+    void inject(TrainingSessionActivity activity);
 
 }
 
