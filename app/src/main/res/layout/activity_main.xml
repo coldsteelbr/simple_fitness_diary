@@ -6,31 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:layout_marginLeft="@dimen/md_screen_edge_left_right_margin"
+    android:layout_marginRight="@dimen/md_screen_edge_left_right_margin"
     tools:context="ru.romanbrazhnikov.simplefitnessdiary.views.MainActivity">
-
-    <Button
-        android:id="@+id/b_testSession"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="testSession"/>
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Training sets:"/>
+        android:layout_height="@dimen/md_subtitle_height"
+        android:gravity="center_vertical"
+        android:text="Training sessions:"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_trainingSets"
+        android:id="@+id/rv_trainingSessions"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_addTrainingSet"
+        android:id="@+id/fab_addTrainingSession"
         android:src="@drawable/ic_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        app:layout_anchor="@id/rv_trainingSets"
+        app:layout_anchor="@id/rv_trainingSessions"
         app:layout_anchorGravity="bottom|right|end"/>
 </LinearLayout>
