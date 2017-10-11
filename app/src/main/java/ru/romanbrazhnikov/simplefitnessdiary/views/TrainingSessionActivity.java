@@ -79,7 +79,7 @@ public class TrainingSessionActivity extends BaseRecyclerViewActivity<TrainingSe
 
     @Override
     protected int getRecyclerViewID() {
-        return R.id.rv_trainingSessions;
+        return R.id.rv_trainingSets;
     }
 
     @Override

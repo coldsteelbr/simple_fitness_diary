@@ -10,7 +10,8 @@
     <TextView
         android:layout_height="@dimen/md_subtitle_height"
         android:layout_width="match_parent"
-        android:text="Sessions"/>
+        android:gravity="center_vertical"
+        android:text="Sets"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -18,15 +19,15 @@
         android:layout_weight="1">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_trainingSessions"
+            android:id="@+id/rv_trainingSets"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_addTrainingSession"
+            android:id="@+id/fab_addTrainingSet"
+            android:src="@drawable/ic_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_add"
             android:layout_gravity="bottom|end"
             app:useCompatPadding="true"/>
     </FrameLayout>

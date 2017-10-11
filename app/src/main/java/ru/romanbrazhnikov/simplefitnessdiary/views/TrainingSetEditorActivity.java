@@ -24,11 +24,10 @@ public class TrainingSetEditorActivity extends BaseActivity {
 
     //FIELDS
     private TrainingSet mTrainingSet;
-    private Context mContext;
 
     // WIDGETS
-    @BindView(R.id.b_save)
-    Button bSave;
+    @BindView(R.id.fab_save)
+    Button fabSave;
 
     // LISTENERS
     private SaveClickListener mSaveClickListener = new SaveClickListener();
@@ -46,7 +45,7 @@ public class TrainingSetEditorActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
-        bSave.setOnClickListener(mSaveClickListener);
+        fabSave.setOnClickListener(mSaveClickListener);
     }
 
     @Override
