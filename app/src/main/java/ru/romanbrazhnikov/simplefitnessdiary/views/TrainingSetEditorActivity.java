@@ -4,12 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.Date;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.objectbox.Box;
 import ru.romanbrazhnikov.simplefitnessdiary.R;
 import ru.romanbrazhnikov.simplefitnessdiary.base.views.BaseActivity;
 import ru.romanbrazhnikov.simplefitnessdiary.entities.TrainingSet;
@@ -20,21 +25,27 @@ import ru.romanbrazhnikov.simplefitnessdiary.entities.TrainingSet;
 
 public class TrainingSetEditorActivity extends BaseActivity {
     // CONSTANTS
-    private static final String CUSTOM_EXTRA_TRAINING_SET = "CUSTOM_EXTRA_TRAINING_SET";
+    private static final String CUSTOM_EXTRA_TRAINING_SET_ID = "CUSTOM_EXTRA_TRAINING_SET_ID";
+    private static final String CUSTOM_EXTRA_TRAINING_SESSION_ID = "CUSTOM_EXTRA_TRAINING_SESSION_ID";
 
     //FIELDS
-    private TrainingSet mTrainingSet;
+    @Inject
+    Box<TrainingSet> mTrainingSetBox;
 
+    private TrainingSet mTrainingSet;
+    private long mId;
     // WIDGETS
     @BindView(R.id.fab_save)
-    Button fabSave;
+    FloatingActionButton fabSave;
 
     // LISTENERS
     private SaveClickListener mSaveClickListener = new SaveClickListener();
+    private long mSessionId;
 
-    public static void showNewActivity(Context context, Long trainingSetID) {
+    public static void showNewActivity(Context context, Long trainingSetID, Long sessionID) {
         Intent intent = new Intent(context, TrainingSetEditorActivity.class);
-        intent.putExtra(CUSTOM_EXTRA_TRAINING_SET, trainingSetID);
+        intent.putExtra(CUSTOM_EXTRA_TRAINING_SET_ID, trainingSetID);
+        intent.putExtra(CUSTOM_EXTRA_TRAINING_SESSION_ID, sessionID);
         context.startActivity(intent);
     }
 
@@ -44,6 +55,14 @@ public class TrainingSetEditorActivity extends BaseActivity {
         setContentView(R.layout.activity_training_set_editor);
 
         ButterKnife.bind(this);
+
+        mId = getIntent().getLongExtra(CUSTOM_EXTRA_TRAINING_SET_ID, 0);
+        if (mId == 0) {
+            mSessionId = getIntent().getLongExtra(CUSTOM_EXTRA_TRAINING_SESSION_ID, 0);
+            mTrainingSet = new TrainingSet();
+            mTrainingSet.setDate(new Date());
+            mTrainingSet.setSessionId(mSessionId);
+        }
 
         fabSave.setOnClickListener(mSaveClickListener);
     }
@@ -56,7 +75,9 @@ public class TrainingSetEditorActivity extends BaseActivity {
     class SaveClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            mTrainingSetBox.put(mTrainingSet);
             Toast.makeText(TrainingSetEditorActivity.this, "Save", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 }

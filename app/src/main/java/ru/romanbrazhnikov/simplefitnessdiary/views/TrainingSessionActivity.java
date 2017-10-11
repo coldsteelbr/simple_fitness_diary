@@ -4,12 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.objectbox.Box;
 import io.objectbox.query.Query;
 import ru.romanbrazhnikov.simplefitnessdiary.R;
@@ -35,6 +39,13 @@ public class TrainingSessionActivity extends BaseRecyclerViewActivity<TrainingSe
 
     private long mSessionId;
 
+    // WIDGETS
+    @BindView(R.id.fab_addTrainingSet)
+    FloatingActionButton fab_addSet;
+
+    // LISTENERS
+    private AddSetClickListener mAddSetClickListener = new AddSetClickListener();
+
     public static void showNewActivity(Context context, Long trainingSessionID) {
         Intent intent = new Intent(context, TrainingSessionActivity.class);
         intent.putExtra(CUSTOM_EXTRA_TRAINING_SESSION_ID, trainingSessionID);
@@ -44,15 +55,19 @@ public class TrainingSessionActivity extends BaseRecyclerViewActivity<TrainingSe
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
+
+        initListeners();
 
         mSessionId = getIntent().getLongExtra(CUSTOM_EXTRA_TRAINING_SESSION_ID, 0);
+        if (mSessionId == 0) {
+            TrainingSession session = new TrainingSession(new Date(), "New session");
+            mSessionId = mTrainingSessionBox.put(session);
+        }
+    }
 
-        /*
-        TrainingSession testSession = new TrainingSession();
-        testSession.setDate(new Date());
-        testSession.setDescription("Test (" + Math.random() + ")");
-        mTrainingSessionBox.put(testSession);
-        */
+    private void initListeners() {
+        fab_addSet.setOnClickListener(mAddSetClickListener);
     }
 
     @Override
@@ -95,5 +110,13 @@ public class TrainingSessionActivity extends BaseRecyclerViewActivity<TrainingSe
     @Override
     protected int getScreenLayout() {
         return R.layout.activity_training_session;
+    }
+
+    class AddSetClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            TrainingSetEditorActivity.showNewActivity(
+                    TrainingSessionActivity.this, 0L, mSessionId);
+        }
     }
 }

@@ -33,6 +33,6 @@ public class TrainingSetViewHolder extends BaseViewHolder<TrainingSet>
 
     @Override
     public void onClick(View view) {
-        TrainingSetEditorActivity.showNewActivity(mContext, mTrainingSetID);
+        TrainingSetEditorActivity.showNewActivity(mContext, mTrainingSetID, null);
     }
 }
