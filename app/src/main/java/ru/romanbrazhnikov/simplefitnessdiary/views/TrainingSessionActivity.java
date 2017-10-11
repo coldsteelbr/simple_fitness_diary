@@ -94,6 +94,6 @@ public class TrainingSessionActivity extends BaseRecyclerViewActivity<TrainingSe
 
     @Override
     protected int getScreenLayout() {
-        return R.layout.activity_training_sesssion;
+        return R.layout.activity_training_session;
     }
 }
