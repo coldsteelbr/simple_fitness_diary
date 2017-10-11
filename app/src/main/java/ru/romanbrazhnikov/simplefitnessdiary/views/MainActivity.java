@@ -102,7 +102,7 @@ public class MainActivity extends BaseRecyclerViewActivity<TrainingSession, Trai
     class AddClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            TrainingSetEditorActivity.showNewActivity(MainActivity.this, null);
+            TrainingSessionActivity.showNewActivity(MainActivity.this, null);
         }
     }
 }
