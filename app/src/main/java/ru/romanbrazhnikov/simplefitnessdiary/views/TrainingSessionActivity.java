@@ -25,7 +25,7 @@ import ru.romanbrazhnikov.simplefitnessdiary.entities.TrainingSet_;
 /**
  * Created by roman on 10.10.17.
  */
-
+// TODO: save session ID
 public class TrainingSessionActivity extends BaseRecyclerViewActivity<TrainingSet, TrainingSetViewHolder> {
     // CONSTANTS
     private static final String CUSTOM_EXTRA_TRAINING_SESSION_ID = "CUSTOM_EXTRA_TRAINING_SESSION_ID";

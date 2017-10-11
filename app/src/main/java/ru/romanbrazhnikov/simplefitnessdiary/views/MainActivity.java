@@ -44,11 +44,12 @@ public class MainActivity extends BaseRecyclerViewActivity<TrainingSession, Trai
         ButterKnife.bind(this);
         initListeners();
 
+        /*
         TrainingSession session1 = new TrainingSession(new Date(), "Session 1 (" + Math.random() + ")");
         TrainingSession session2 = new TrainingSession(new Date(), "Session 2 (" + Math.random() + ")");
         mTrainingSessionBox.put(session1);
         mTrainingSessionBox.put(session2);
-
+        */
 
     }
 

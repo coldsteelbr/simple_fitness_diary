@@ -59,8 +59,7 @@ public class TrainingSetEditorActivity extends BaseActivity {
         mId = getIntent().getLongExtra(CUSTOM_EXTRA_TRAINING_SET_ID, 0);
         if (mId == 0) {
             mSessionId = getIntent().getLongExtra(CUSTOM_EXTRA_TRAINING_SESSION_ID, 0);
-            mTrainingSet = new TrainingSet();
-            mTrainingSet.setDate(new Date());
+            mTrainingSet = TrainingSet.getDefaultSet();
             mTrainingSet.setSessionId(mSessionId);
         }
 
