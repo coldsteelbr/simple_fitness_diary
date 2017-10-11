@@ -58,7 +58,7 @@ public class TrainingSet {
         this.measurement = measurement;
     }
 
-    public static TrainingSet getDefaultSet(){
+    public static TrainingSet getDefaultSet() {
         TrainingSet set = new TrainingSet();
         set.setDate(new Date());
         set.setExerciseType("Default exercise");

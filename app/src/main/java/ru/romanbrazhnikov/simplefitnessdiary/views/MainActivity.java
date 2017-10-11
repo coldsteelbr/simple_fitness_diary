@@ -3,16 +3,13 @@ package ru.romanbrazhnikov.simplefitnessdiary.views;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
-import android.widget.Button;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.objectbox.Box;
 import io.objectbox.query.Query;
 import ru.romanbrazhnikov.simplefitnessdiary.R;

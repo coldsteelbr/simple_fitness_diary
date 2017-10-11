@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -34,9 +34,14 @@ public class TrainingSetEditorActivity extends BaseActivity {
 
     private TrainingSet mTrainingSet;
     private long mId;
+
     // WIDGETS
     @BindView(R.id.fab_save)
     FloatingActionButton fabSave;
+    @BindView(R.id.tv_setType)
+    TextView tvSetType;
+    @BindView(R.id.et_result)
+    EditText etResult;
 
     // LISTENERS
     private SaveClickListener mSaveClickListener = new SaveClickListener();
@@ -62,8 +67,22 @@ public class TrainingSetEditorActivity extends BaseActivity {
             mTrainingSet = TrainingSet.getDefaultSet();
             mTrainingSet.setSessionId(mSessionId);
         }
+        else {
+            mTrainingSet = mTrainingSetBox.get(mId);
+        }
 
         fabSave.setOnClickListener(mSaveClickListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
+    private void updateUI() {
+        tvSetType.setText(mTrainingSet.getExerciseType());
+        etResult.setText(mTrainingSet.getMeasurement());
     }
 
     @Override
@@ -74,6 +93,7 @@ public class TrainingSetEditorActivity extends BaseActivity {
     class SaveClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            mTrainingSet.setMeasurement(etResult.getText().toString());
             mTrainingSetBox.put(mTrainingSet);
             Toast.makeText(TrainingSetEditorActivity.this, "Save", Toast.LENGTH_SHORT).show();
             finish();

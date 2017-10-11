@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:layout_marginLeft="@dimen/md_screen_edge_left_right_margin"
-              android:layout_marginRight="@dimen/md_screen_edge_left_right_margin">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    <TextView
-        android:text="Set"
-        android:layout_height="@dimen/md_subtitle_height"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_marginLeft="@dimen/md_screen_edge_left_right_margin"
+             android:layout_marginRight="@dimen/md_screen_edge_left_right_margin">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:gravity="center_vertical"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_trainingSets"
+        <TextView
+            android:id="@+id/tv_setType"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="@dimen/md_subtitle_height"/>
 
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_save"
-            android:src="@drawable/ic_done"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_gravity="bottom|end"/>
-    </FrameLayout>
-</LinearLayout>
+            android:text="Result:"/>
+
+        <EditText
+            android:id="@+id/et_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_save"
+        android:src="@drawable/ic_done"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom|end"/>
+</FrameLayout>
