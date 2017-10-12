@@ -66,8 +66,7 @@ public class TrainingSetEditorActivity extends BaseActivity {
             mSessionId = getIntent().getLongExtra(CUSTOM_EXTRA_TRAINING_SESSION_ID, 0);
             mTrainingSet = TrainingSet.getDefaultSet();
             mTrainingSet.setSessionId(mSessionId);
-        }
-        else {
+        } else {
             mTrainingSet = mTrainingSetBox.get(mId);
         }
 
@@ -82,7 +81,8 @@ public class TrainingSetEditorActivity extends BaseActivity {
 
     private void updateUI() {
         tvSetType.setText(mTrainingSet.getExerciseType());
-        etResult.setText(mTrainingSet.getMeasurement());
+        // TODO: update UI elements
+        //etResult.setText(mTrainingSet.getMeasurements());
     }
 
     @Override
@@ -93,7 +93,8 @@ public class TrainingSetEditorActivity extends BaseActivity {
     class SaveClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            mTrainingSet.setMeasurement(etResult.getText().toString());
+            // TODO: save measurements from UI to MAP
+            //mTrainingSet.setMeasurements(etResult.getText().toString());
             mTrainingSetBox.put(mTrainingSet);
             Toast.makeText(TrainingSetEditorActivity.this, "Save", Toast.LENGTH_SHORT).show();
             finish();

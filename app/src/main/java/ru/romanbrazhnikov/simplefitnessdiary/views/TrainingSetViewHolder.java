@@ -28,7 +28,7 @@ public class TrainingSetViewHolder extends BaseViewHolder<TrainingSet>
     @Override
     public void bindItem(TrainingSet set) {
         mTrainingSetID = set.getId();
-        tvContent.setText(set.getExerciseType() + " " + set.getMeasurement());
+        tvContent.setText(set.getExerciseType() + " " + set.getMeasurements());
     }
 
     @Override

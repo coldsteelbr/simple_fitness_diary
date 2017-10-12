@@ -21,10 +21,13 @@
             android:layout_height="wrap_content"
             android:text="Result:"/>
 
-        <EditText
-            android:id="@+id/et_result"
+        <!-- Result (measurements) -->
+        <LinearLayout
+            android:id="@+id/ll_result"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
