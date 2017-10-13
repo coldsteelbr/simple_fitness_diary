@@ -5,10 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import javax.inject.Inject;
@@ -50,6 +54,7 @@ public class TrainingSetEditorActivity extends BaseActivity {
 
     // LISTENERS
     private SaveClickListener mSaveClickListener = new SaveClickListener();
+    private ExerciseSelectedListener mExerciseSelectedListener = new ExerciseSelectedListener();
     private long mSessionId;
 
     public static void showNewActivity(Context context, Long trainingSetID, Long sessionID) {
@@ -79,10 +84,32 @@ public class TrainingSetEditorActivity extends BaseActivity {
         fabSave.setOnClickListener(mSaveClickListener);
     }
 
-    private void initSpinner(){
-        mAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, exerciseArray);
+    private void initSpinner() {
+        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, exerciseArray);
         mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnExerciseTypes.setAdapter(mAdapter);
+        spnExerciseTypes.setOnItemSelectedListener(mExerciseSelectedListener);
+    }
+
+    private View inflateMeasurementItem(String type, String value, String unit) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View measurementItem = inflater.inflate(R.layout.item_measurement, null);
+
+        TextView tv_measurementType = measurementItem.findViewById(R.id.tv_measurementType);
+        TextView tv_unit = measurementItem.findViewById(R.id.tv_unit);
+        EditText et_value = measurementItem.findViewById(R.id.et_value);
+
+        if (unit != null) {
+            tv_measurementType.setText(type);
+        }
+        if (unit != null) {
+            tv_unit.setText(unit);
+        }
+        if (value != null) {
+            et_value.setText(value);
+        }
+
+        return measurementItem;
     }
 
     @Override
@@ -93,8 +120,6 @@ public class TrainingSetEditorActivity extends BaseActivity {
 
     private void updateUI() {
         spnExerciseTypes.setSelection(mAdapter.getPosition(mTrainingSet.getExerciseType()));
-        // TODO: update UI elements
-        //etResult.setText(mTrainingSet.getMeasurements());
     }
 
     @Override
@@ -110,6 +135,24 @@ public class TrainingSetEditorActivity extends BaseActivity {
             mTrainingSetBox.put(mTrainingSet);
             Toast.makeText(TrainingSetEditorActivity.this, "Save", Toast.LENGTH_SHORT).show();
             finish();
+        }
+    }
+
+    class ExerciseSelectedListener implements Spinner.OnItemSelectedListener {
+
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            llResult.removeAllViews();
+            for (String curKey :
+                    mTrainingSet.getMeasurements().keySet()) {
+                llResult.addView(inflateMeasurementItem(curKey, mTrainingSet.getMeasurements().get(curKey), null));
+            }
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
         }
     }
 }
