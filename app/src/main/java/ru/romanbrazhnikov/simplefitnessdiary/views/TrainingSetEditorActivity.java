@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import javax.inject.Inject;
@@ -24,6 +25,8 @@ import ru.romanbrazhnikov.simplefitnessdiary.entities.TrainingSet;
  */
 
 public class TrainingSetEditorActivity extends BaseActivity {
+    String[] exerciseArray = {"pull-ups", "push-ups", "jogging", "bench press"};
+
     // CONSTANTS
     private static final String CUSTOM_EXTRA_TRAINING_SET_ID = "CUSTOM_EXTRA_TRAINING_SET_ID";
     private static final String CUSTOM_EXTRA_TRAINING_SESSION_ID = "CUSTOM_EXTRA_TRAINING_SESSION_ID";
@@ -34,14 +37,16 @@ public class TrainingSetEditorActivity extends BaseActivity {
 
     private TrainingSet mTrainingSet;
     private long mId;
+    private ArrayAdapter<String> mAdapter;
+
 
     // WIDGETS
     @BindView(R.id.fab_save)
     FloatingActionButton fabSave;
-    @BindView(R.id.tv_setType)
-    TextView tvSetType;
-    @BindView(R.id.et_result)
-    EditText etResult;
+    @BindView(R.id.ll_result)
+    ViewGroup llResult;
+    @BindView(R.id.spn_exercise_types)
+    Spinner spnExerciseTypes;
 
     // LISTENERS
     private SaveClickListener mSaveClickListener = new SaveClickListener();
@@ -70,7 +75,14 @@ public class TrainingSetEditorActivity extends BaseActivity {
             mTrainingSet = mTrainingSetBox.get(mId);
         }
 
+        initSpinner();
         fabSave.setOnClickListener(mSaveClickListener);
+    }
+
+    private void initSpinner(){
+        mAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, exerciseArray);
+        mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnExerciseTypes.setAdapter(mAdapter);
     }
 
     @Override
@@ -80,7 +92,7 @@ public class TrainingSetEditorActivity extends BaseActivity {
     }
 
     private void updateUI() {
-        tvSetType.setText(mTrainingSet.getExerciseType());
+        spnExerciseTypes.setSelection(mAdapter.getPosition(mTrainingSet.getExerciseType()));
         // TODO: update UI elements
         //etResult.setText(mTrainingSet.getMeasurements());
     }

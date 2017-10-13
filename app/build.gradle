@@ -18,6 +18,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    "src/main/res/app",
+                    "src/main/res/sessionlist",
+                    "src/main/res/session",
+                    "src/main/res/seteditor"
+            ]
+        }
+    }
+
 }
 
 dependencies {
@@ -39,3 +50,4 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.android.support:design:26.1.0'
 }
+

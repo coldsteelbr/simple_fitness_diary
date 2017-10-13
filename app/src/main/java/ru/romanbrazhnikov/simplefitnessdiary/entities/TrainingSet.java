@@ -29,13 +29,15 @@ public class TrainingSet {
         @Override
         public Map<String, String> convertToEntityProperty(String databaseValue) {
             Map<String, String> result = new HashMap<>();
-            if (databaseValue != null) {
+            if (!"".equals(databaseValue) && databaseValue != null) {
                 String[] pairs = databaseValue.split(";");
-                for (String pair :
-                        pairs) {
-                    if (pair != null) {
-                        String[] parsedPair = pair.split(":");
-                        result.put(parsedPair[0], parsedPair[1]);
+                if (pairs.length > 0) {
+                    for (String pair :
+                            pairs) {
+                        if (pair != null) {
+                            String[] parsedPair = pair.split(":");
+                            result.put(parsedPair[0], parsedPair[1]);
+                        }
                     }
                 }
             }
