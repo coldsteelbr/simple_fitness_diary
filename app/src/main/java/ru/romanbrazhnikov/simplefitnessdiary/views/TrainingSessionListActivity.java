@@ -16,8 +16,9 @@ import ru.romanbrazhnikov.simplefitnessdiary.R;
 import ru.romanbrazhnikov.simplefitnessdiary.base.views.BaseRecyclerViewActivity;
 import ru.romanbrazhnikov.simplefitnessdiary.entities.TrainingSession;
 import ru.romanbrazhnikov.simplefitnessdiary.entities.TrainingSet;
+import ru.romanbrazhnikov.simplefitnessdiary.views.viewholders.TrainingSessionViewHolder;
 
-public class MainActivity extends BaseRecyclerViewActivity<TrainingSession, TrainingSessionViewHolder> {
+public class TrainingSessionListActivity extends BaseRecyclerViewActivity<TrainingSession, TrainingSessionViewHolder> {
     // FIELDS
     @Inject
     Box<TrainingSet> mTrainingSetBox;
@@ -36,7 +37,7 @@ public class MainActivity extends BaseRecyclerViewActivity<TrainingSession, Trai
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_training_session_list);
 
         ButterKnife.bind(this);
         initListeners();
@@ -57,7 +58,7 @@ public class MainActivity extends BaseRecyclerViewActivity<TrainingSession, Trai
 
     @Override
     protected int getScreenLayout() {
-        return R.layout.activity_main;
+        return R.layout.activity_training_session_list;
     }
 
     @Override
@@ -100,7 +101,7 @@ public class MainActivity extends BaseRecyclerViewActivity<TrainingSession, Trai
     class AddClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            TrainingSessionActivity.showNewActivity(MainActivity.this, null);
+            TrainingSessionActivity.showNewActivity(TrainingSessionListActivity.this, null);
         }
     }
 }

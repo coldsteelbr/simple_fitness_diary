@@ -1,4 +1,4 @@
-package ru.romanbrazhnikov.simplefitnessdiary.views;
+package ru.romanbrazhnikov.simplefitnessdiary.views.viewholders;
 
 import android.content.Context;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.TextView;
 import ru.romanbrazhnikov.simplefitnessdiary.R;
 import ru.romanbrazhnikov.simplefitnessdiary.base.views.viewholders.BaseViewHolder;
 import ru.romanbrazhnikov.simplefitnessdiary.entities.TrainingSet;
+import ru.romanbrazhnikov.simplefitnessdiary.views.TrainingSetEditorActivity;
 
 /**
  * Created by roman on 07.10.17.

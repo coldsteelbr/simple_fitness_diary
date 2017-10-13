@@ -21,6 +21,7 @@ import ru.romanbrazhnikov.simplefitnessdiary.base.views.BaseRecyclerViewActivity
 import ru.romanbrazhnikov.simplefitnessdiary.entities.TrainingSession;
 import ru.romanbrazhnikov.simplefitnessdiary.entities.TrainingSet;
 import ru.romanbrazhnikov.simplefitnessdiary.entities.TrainingSet_;
+import ru.romanbrazhnikov.simplefitnessdiary.views.viewholders.TrainingSetViewHolder;
 
 /**
  * Created by roman on 10.10.17.
